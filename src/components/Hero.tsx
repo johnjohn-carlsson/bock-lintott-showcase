@@ -19,8 +19,7 @@ const Hero = () => {
             <img
               src={logo}
               alt="Bock & Lintott"
-              className="w-full max-w-xs h-auto"
-              style={{ filter: "brightness(0) invert(1)" }}
+              className="w-full max-w-md h-auto"
             />
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl text-white font-bold mb-6 tracking-tight uppercase">
