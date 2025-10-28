@@ -19,13 +19,9 @@ const Hero = () => {
             <img
               src={logo}
               alt="Bock & Lintott"
-              className="w-full max-w-md h-auto"
+              className="w-full max-w-md h-auto rounded-2xl"
             />
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl text-white font-bold mb-6 tracking-tight uppercase">
-            Vi finns här för<br />
-            alla typer av träarbete
-          </h1>
           <div className="inline-block bg-foreground text-background px-8 py-3 font-bold tracking-wider text-sm">
             FINSNICKERI - RENOVERING - DESIGN
           </div>
