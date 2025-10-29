@@ -1,23 +1,29 @@
+import { useNavigate } from "react-router-dom";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
 
 const Gallery = () => {
+  const navigate = useNavigate();
+
   const works = [
     {
       image: work1,
       title: "Fönsterrenovering",
       description: "Restaurering av historiska fönster med respekt för originalet",
+      slug: "fonsterrenovering",
     },
     {
       image: work2,
       title: "Möbelrestaurering",
       description: "Förnyat liv till klassiska möbler med moderna färgsättningar",
+      slug: "mobelrestaurering",
     },
     {
       image: work3,
       title: "Egen design",
       description: "Skräddarsydda möbler som kombinerar tradition och nutid",
+      slug: "egen-design",
     },
   ];
 
@@ -29,7 +35,7 @@ const Gallery = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
             Kreativa hantverkare som kombinerar traditionellt hantverk med modern design
           </p>
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">Showroom</h3>
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">Galleri</h3>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Ett urval av våra projekt – från fönsterrenovering till möbelrestaurering och egen design.
           </p>
@@ -40,6 +46,7 @@ const Gallery = () => {
             <div
               key={index}
               className="group cursor-pointer"
+              onClick={() => navigate(`/galleri/${work.slug}`)}
             >
               <div className="aspect-square overflow-hidden mb-4 bg-muted">
                 <img
