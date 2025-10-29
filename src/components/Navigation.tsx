@@ -27,22 +27,22 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <button
-              onClick={() => scrollToSection("about")}
+              onClick={() => scrollToSection("gallery")}
+              className="text-sm font-medium hover:opacity-70 transition-opacity"
+            >
+              Galleri
+            </button>
+            <button
+              onClick={() => scrollToSection("om-oss")}
               className="text-sm font-medium hover:opacity-70 transition-opacity"
             >
               Om oss
             </button>
             <button
-              onClick={() => scrollToSection("gallery")}
+              onClick={() => scrollToSection("showroom")}
               className="text-sm font-medium hover:opacity-70 transition-opacity"
             >
               Showroom
-            </button>
-            <button
-              onClick={() => scrollToSection("news")}
-              className="text-sm font-medium hover:opacity-70 transition-opacity"
-            >
-              Aktuellt
             </button>
             <Button
               onClick={() => scrollToSection("contact")}
@@ -67,22 +67,22 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden py-4 space-y-4 border-t border-border">
             <button
-              onClick={() => scrollToSection("about")}
+              onClick={() => scrollToSection("gallery")}
+              className="block w-full text-left py-2 text-sm font-medium hover:opacity-70 transition-opacity"
+            >
+              Galleri
+            </button>
+            <button
+              onClick={() => scrollToSection("om-oss")}
               className="block w-full text-left py-2 text-sm font-medium hover:opacity-70 transition-opacity"
             >
               Om oss
             </button>
             <button
-              onClick={() => scrollToSection("gallery")}
+              onClick={() => scrollToSection("showroom")}
               className="block w-full text-left py-2 text-sm font-medium hover:opacity-70 transition-opacity"
             >
               Showroom
-            </button>
-            <button
-              onClick={() => scrollToSection("news")}
-              className="block w-full text-left py-2 text-sm font-medium hover:opacity-70 transition-opacity"
-            >
-              Aktuellt
             </button>
             <Button
               onClick={() => scrollToSection("contact")}
