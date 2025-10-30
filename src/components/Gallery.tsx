@@ -1,30 +1,19 @@
-import { useNavigate } from "react-router-dom";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Gallery = () => {
-  const navigate = useNavigate();
-
-  const works = [
-    {
-      image: work1,
-      title: "Fönsterrenovering",
-      description: "Restaurering av historiska fönster med respekt för originalet",
-      slug: "fonsterrenovering",
-    },
-    {
-      image: work2,
-      title: "Möbelrestaurering",
-      description: "Förnyat liv till klassiska möbler med moderna färgsättningar",
-      slug: "mobelrestaurering",
-    },
-    {
-      image: work3,
-      title: "Egen design",
-      description: "Skräddarsydda möbler som kombinerar tradition och nutid",
-      slug: "egen-design",
-    },
+  const images = [
+    { src: work1, alt: "Fönsterrenovering - Restaurering av historiska fönster" },
+    { src: work2, alt: "Möbelrestaurering - Förnyat liv till klassiska möbler" },
+    { src: work3, alt: "Egen design - Skräddarsydda möbler" },
   ];
 
   return (
@@ -41,25 +30,25 @@ const Gallery = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {works.map((work, index) => (
-            <div
-              key={index}
-              className="group cursor-pointer"
-              onClick={() => navigate(`/galleri/${work.slug}`)}
-            >
-              <div className="aspect-square overflow-hidden mb-4 bg-muted">
-                <img
-                  src={work.image}
-                  alt={work.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-2">{work.title}</h3>
-              <p className="text-muted-foreground">{work.description}</p>
-            </div>
-          ))}
-        </div>
+        <Carousel className="w-full max-w-5xl mx-auto">
+          <CarouselContent>
+            {images.map((image, index) => (
+              <CarouselItem key={index}>
+                <div className="p-1">
+                  <div className="aspect-[4/3] overflow-hidden rounded-lg bg-muted">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </section>
   );
