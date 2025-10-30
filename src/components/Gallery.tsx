@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
   CarouselApi,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const Gallery = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -46,7 +47,18 @@ const Gallery = () => {
         </div>
 
         <div className="w-full max-w-5xl mx-auto space-y-4">
-          <Carousel setApi={setApi} className="w-full">
+          <Carousel 
+            setApi={setApi} 
+            className="w-full"
+            plugins={[
+              Autoplay({
+                delay: 4000,
+              }),
+            ]}
+            opts={{
+              loop: true,
+            }}
+          >
             <CarouselContent>
               {images.map((image, index) => (
                 <CarouselItem key={index}>
