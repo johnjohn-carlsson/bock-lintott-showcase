@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
@@ -7,14 +8,28 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselApi,
 } from "@/components/ui/carousel";
 
 const Gallery = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
   const images = [
     { src: work1, alt: "Fönsterrenovering - Restaurering av historiska fönster" },
     { src: work2, alt: "Möbelrestaurering - Förnyat liv till klassiska möbler" },
     { src: work3, alt: "Egen design - Skräddarsydda möbler" },
   ];
+
+  useEffect(() => {
+    if (!api) return;
+
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
 
   return (
     <section id="gallery" className="py-24 bg-background">
@@ -30,25 +45,47 @@ const Gallery = () => {
           </p>
         </div>
 
-        <Carousel className="w-full max-w-5xl mx-auto">
-          <CarouselContent>
-            {images.map((image, index) => (
-              <CarouselItem key={index}>
-                <div className="p-1">
-                  <div className="aspect-[4/3] overflow-hidden rounded-lg bg-muted">
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover"
-                    />
+        <div className="w-full max-w-5xl mx-auto space-y-4">
+          <Carousel setApi={setApi} className="w-full">
+            <CarouselContent>
+              {images.map((image, index) => (
+                <CarouselItem key={index}>
+                  <div className="p-1">
+                    <div className="aspect-[4/3] overflow-hidden rounded-lg bg-muted">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
-                </div>
-              </CarouselItem>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+
+          <div className="flex justify-center gap-2 px-12">
+            {images.map((image, index) => (
+              <button
+                key={index}
+                onClick={() => api?.scrollTo(index)}
+                className={`relative aspect-square w-20 overflow-hidden rounded-md transition-all ${
+                  current === index
+                    ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
+                    : "opacity-60 hover:opacity-100"
+                }`}
+              >
+                <img
+                  src={image.src}
+                  alt={`Thumbnail ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </button>
             ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+          </div>
+        </div>
       </div>
     </section>
   );
