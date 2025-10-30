@@ -33,8 +33,8 @@ const Gallery = () => {
   }, [api]);
 
   return (
-    <section id="gallery" className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="py-24 bg-background overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="mb-16 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Välkommen till Bock & Lintott</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
@@ -46,10 +46,10 @@ const Gallery = () => {
           </p>
         </div>
 
-        <div className="w-full max-w-5xl mx-auto space-y-4">
+        <div className="w-full max-w-5xl mx-auto space-y-4 overflow-hidden">
           <Carousel 
             setApi={setApi} 
-            className="w-full"
+            className="w-full px-12"
             plugins={[
               Autoplay({
                 delay: 4000,
